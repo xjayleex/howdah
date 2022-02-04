@@ -1,0 +1,17 @@
+syntax = "proto3";
+package pb;
+import "google/api/annotations.proto";
+option go_package = "pb";
+message SignInRequest {}
+
+message SignInResponse {
+  string token = 1;
+}
+
+service AuthService {
+  rpc SignIn(SignInRequest) returns (SignInResponse){
+    option (google.api.http) = {
+      get: "/api/v1/authentication"
+    };
+  };
+}
