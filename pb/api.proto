@@ -2,6 +2,7 @@ syntax = "proto3";
 package pb;
 import "google/api/annotations.proto";
 option go_package = "pb";
+
 message SignInRequest {}
 
 message SignInResponse {
