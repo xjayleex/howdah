@@ -13,7 +13,7 @@ service AuthService {
   };
 }
 
-service RegistrationService {
+service Registration {
   // rpc Auth() returns ()
   rpc RegisterAgent(RegisterAgentRequest) returns (RegisterAgentResponse);
   rpc AgentHeartbeat(stream Heartbeat) returns (stream HeartbeatResponse);

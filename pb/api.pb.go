@@ -4097,18 +4097,17 @@ var file_api_proto_rawDesc = []byte{
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x69, 0x67, 0x6e,
 	0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1e, 0x82, 0xd3, 0xe4, 0x93,
 	0x02, 0x18, 0x12, 0x16, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x61, 0x75, 0x74, 0x68,
-	0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x32, 0x97, 0x01, 0x0a, 0x13, 0x52,
-	0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x12, 0x44, 0x0a, 0x0d, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x41, 0x67,
-	0x65, 0x6e, 0x74, 0x12, 0x18, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65,
-	0x72, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e,
-	0x70, 0x62, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x41, 0x67, 0x65, 0x6e, 0x74,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3a, 0x0a, 0x0e, 0x41, 0x67, 0x65, 0x6e,
-	0x74, 0x48, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61, 0x74, 0x12, 0x0d, 0x2e, 0x70, 0x62, 0x2e,
-	0x48, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61, 0x74, 0x1a, 0x15, 0x2e, 0x70, 0x62, 0x2e, 0x48,
-	0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x28, 0x01, 0x30, 0x01, 0x42, 0x04, 0x5a, 0x02, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x65, 0x6e, 0x74, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x32, 0x90, 0x01, 0x0a, 0x0c, 0x52,
+	0x65, 0x67, 0x69, 0x73, 0x74, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x44, 0x0a, 0x0d, 0x52,
+	0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x12, 0x18, 0x2e, 0x70,
+	0x62, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x65, 0x67, 0x69,
+	0x73, 0x74, 0x65, 0x72, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x3a, 0x0a, 0x0e, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x48, 0x65, 0x61, 0x72, 0x74, 0x62,
+	0x65, 0x61, 0x74, 0x12, 0x0d, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65,
+	0x61, 0x74, 0x1a, 0x15, 0x2e, 0x70, 0x62, 0x2e, 0x48, 0x65, 0x61, 0x72, 0x74, 0x62, 0x65, 0x61,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x28, 0x01, 0x30, 0x01, 0x42, 0x04, 0x5a,
+	0x02, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4264,11 +4263,11 @@ var file_api_proto_depIdxs = []int32{
 	36, // 72: pb.AlertDefinitionCommand.ConfigurationsEntry.value:type_name -> pb.SSSMap
 	35, // 73: pb.SSSMap.MEntry.value:type_name -> pb.SSMap
 	9,  // 74: pb.AuthService.SignIn:input_type -> pb.SignInRequest
-	11, // 75: pb.RegistrationService.RegisterAgent:input_type -> pb.RegisterAgentRequest
-	15, // 76: pb.RegistrationService.AgentHeartbeat:input_type -> pb.Heartbeat
+	11, // 75: pb.Registration.RegisterAgent:input_type -> pb.RegisterAgentRequest
+	15, // 76: pb.Registration.AgentHeartbeat:input_type -> pb.Heartbeat
 	10, // 77: pb.AuthService.SignIn:output_type -> pb.SignInResponse
-	14, // 78: pb.RegistrationService.RegisterAgent:output_type -> pb.RegisterAgentResponse
-	20, // 79: pb.RegistrationService.AgentHeartbeat:output_type -> pb.HeartbeatResponse
+	14, // 78: pb.Registration.RegisterAgent:output_type -> pb.RegisterAgentResponse
+	20, // 79: pb.Registration.AgentHeartbeat:output_type -> pb.HeartbeatResponse
 	77, // [77:80] is the sub-list for method output_type
 	74, // [74:77] is the sub-list for method input_type
 	74, // [74:74] is the sub-list for extension type_name
@@ -4768,56 +4767,56 @@ var _AuthService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "api.proto",
 }
 
-// RegistrationServiceClient is the client API for RegistrationService service.
+// RegistrationClient is the client API for Registration service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type RegistrationServiceClient interface {
+type RegistrationClient interface {
 	// rpc Auth() returns ()
 	RegisterAgent(ctx context.Context, in *RegisterAgentRequest, opts ...grpc.CallOption) (*RegisterAgentResponse, error)
-	AgentHeartbeat(ctx context.Context, opts ...grpc.CallOption) (RegistrationService_AgentHeartbeatClient, error)
+	AgentHeartbeat(ctx context.Context, opts ...grpc.CallOption) (Registration_AgentHeartbeatClient, error)
 }
 
-type registrationServiceClient struct {
+type registrationClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewRegistrationServiceClient(cc grpc.ClientConnInterface) RegistrationServiceClient {
-	return &registrationServiceClient{cc}
+func NewRegistrationClient(cc grpc.ClientConnInterface) RegistrationClient {
+	return &registrationClient{cc}
 }
 
-func (c *registrationServiceClient) RegisterAgent(ctx context.Context, in *RegisterAgentRequest, opts ...grpc.CallOption) (*RegisterAgentResponse, error) {
+func (c *registrationClient) RegisterAgent(ctx context.Context, in *RegisterAgentRequest, opts ...grpc.CallOption) (*RegisterAgentResponse, error) {
 	out := new(RegisterAgentResponse)
-	err := c.cc.Invoke(ctx, "/pb.RegistrationService/RegisterAgent", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.Registration/RegisterAgent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *registrationServiceClient) AgentHeartbeat(ctx context.Context, opts ...grpc.CallOption) (RegistrationService_AgentHeartbeatClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_RegistrationService_serviceDesc.Streams[0], "/pb.RegistrationService/AgentHeartbeat", opts...)
+func (c *registrationClient) AgentHeartbeat(ctx context.Context, opts ...grpc.CallOption) (Registration_AgentHeartbeatClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Registration_serviceDesc.Streams[0], "/pb.Registration/AgentHeartbeat", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &registrationServiceAgentHeartbeatClient{stream}
+	x := &registrationAgentHeartbeatClient{stream}
 	return x, nil
 }
 
-type RegistrationService_AgentHeartbeatClient interface {
+type Registration_AgentHeartbeatClient interface {
 	Send(*Heartbeat) error
 	Recv() (*HeartbeatResponse, error)
 	grpc.ClientStream
 }
 
-type registrationServiceAgentHeartbeatClient struct {
+type registrationAgentHeartbeatClient struct {
 	grpc.ClientStream
 }
 
-func (x *registrationServiceAgentHeartbeatClient) Send(m *Heartbeat) error {
+func (x *registrationAgentHeartbeatClient) Send(m *Heartbeat) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *registrationServiceAgentHeartbeatClient) Recv() (*HeartbeatResponse, error) {
+func (x *registrationAgentHeartbeatClient) Recv() (*HeartbeatResponse, error) {
 	m := new(HeartbeatResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -4825,65 +4824,65 @@ func (x *registrationServiceAgentHeartbeatClient) Recv() (*HeartbeatResponse, er
 	return m, nil
 }
 
-// RegistrationServiceServer is the server API for RegistrationService service.
-type RegistrationServiceServer interface {
+// RegistrationServer is the server API for Registration service.
+type RegistrationServer interface {
 	// rpc Auth() returns ()
 	RegisterAgent(context.Context, *RegisterAgentRequest) (*RegisterAgentResponse, error)
-	AgentHeartbeat(RegistrationService_AgentHeartbeatServer) error
+	AgentHeartbeat(Registration_AgentHeartbeatServer) error
 }
 
-// UnimplementedRegistrationServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedRegistrationServiceServer struct {
+// UnimplementedRegistrationServer can be embedded to have forward compatible implementations.
+type UnimplementedRegistrationServer struct {
 }
 
-func (*UnimplementedRegistrationServiceServer) RegisterAgent(context.Context, *RegisterAgentRequest) (*RegisterAgentResponse, error) {
+func (*UnimplementedRegistrationServer) RegisterAgent(context.Context, *RegisterAgentRequest) (*RegisterAgentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterAgent not implemented")
 }
-func (*UnimplementedRegistrationServiceServer) AgentHeartbeat(RegistrationService_AgentHeartbeatServer) error {
+func (*UnimplementedRegistrationServer) AgentHeartbeat(Registration_AgentHeartbeatServer) error {
 	return status.Errorf(codes.Unimplemented, "method AgentHeartbeat not implemented")
 }
 
-func RegisterRegistrationServiceServer(s *grpc.Server, srv RegistrationServiceServer) {
-	s.RegisterService(&_RegistrationService_serviceDesc, srv)
+func RegisterRegistrationServer(s *grpc.Server, srv RegistrationServer) {
+	s.RegisterService(&_Registration_serviceDesc, srv)
 }
 
-func _RegistrationService_RegisterAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Registration_RegisterAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterAgentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RegistrationServiceServer).RegisterAgent(ctx, in)
+		return srv.(RegistrationServer).RegisterAgent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.RegistrationService/RegisterAgent",
+		FullMethod: "/pb.Registration/RegisterAgent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RegistrationServiceServer).RegisterAgent(ctx, req.(*RegisterAgentRequest))
+		return srv.(RegistrationServer).RegisterAgent(ctx, req.(*RegisterAgentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RegistrationService_AgentHeartbeat_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(RegistrationServiceServer).AgentHeartbeat(&registrationServiceAgentHeartbeatServer{stream})
+func _Registration_AgentHeartbeat_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RegistrationServer).AgentHeartbeat(&registrationAgentHeartbeatServer{stream})
 }
 
-type RegistrationService_AgentHeartbeatServer interface {
+type Registration_AgentHeartbeatServer interface {
 	Send(*HeartbeatResponse) error
 	Recv() (*Heartbeat, error)
 	grpc.ServerStream
 }
 
-type registrationServiceAgentHeartbeatServer struct {
+type registrationAgentHeartbeatServer struct {
 	grpc.ServerStream
 }
 
-func (x *registrationServiceAgentHeartbeatServer) Send(m *HeartbeatResponse) error {
+func (x *registrationAgentHeartbeatServer) Send(m *HeartbeatResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *registrationServiceAgentHeartbeatServer) Recv() (*Heartbeat, error) {
+func (x *registrationAgentHeartbeatServer) Recv() (*Heartbeat, error) {
 	m := new(Heartbeat)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -4891,19 +4890,19 @@ func (x *registrationServiceAgentHeartbeatServer) Recv() (*Heartbeat, error) {
 	return m, nil
 }
 
-var _RegistrationService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.RegistrationService",
-	HandlerType: (*RegistrationServiceServer)(nil),
+var _Registration_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.Registration",
+	HandlerType: (*RegistrationServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "RegisterAgent",
-			Handler:    _RegistrationService_RegisterAgent_Handler,
+			Handler:    _Registration_RegisterAgent_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "AgentHeartbeat",
-			Handler:       _RegistrationService_AgentHeartbeat_Handler,
+			Handler:       _Registration_AgentHeartbeat_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},
