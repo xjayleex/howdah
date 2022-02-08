@@ -1,13 +1,9 @@
 syntax = "proto3";
 package pb;
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
 option go_package = "pb";
-
-message SignInRequest {}
-
-message SignInResponse {
-  string token = 1;
-}
 
 service AuthService {
   rpc SignIn(SignInRequest) returns (SignInResponse){
@@ -15,4 +11,445 @@ service AuthService {
       get: "/api/v1/authentication"
     };
   };
+}
+
+service RegistrationService {
+  // rpc Auth() returns ()
+  rpc RegisterAgent(RegisterAgentRequest) returns (RegisterAgentResponse);
+  rpc AgentHeartbeat(stream Heartbeat) returns (stream HeartbeatResponse);
+}
+
+
+
+message SignInRequest {}
+
+message SignInResponse {
+  string token = 1;
+}
+
+message RegisterAgentRequest {
+  int32 response_id = 1;
+  google.protobuf.Timestamp timestamp = 2;
+  google.protobuf.Timestamp agent_start_time = 3;
+  string hostname = 4;
+  int32 current_ping_port = 5;
+  HostInfo hardware_profile = 6;
+  string public_host_name = 7;
+  AgentEnv agent_env = 8;
+  string agent_version = 9;
+  string prefix = 10;
+}
+
+message HostInfo {
+  string architecture = 1;
+  string domain = 2;
+  string fdqn = 3;
+  string hardware_isa = 4;
+  string hardware_model = 5;
+  string hostname = 6;
+  string id = 7;
+  string interfaces = 8;
+  string ip_address = 9;
+  string kernel = 10;
+  string kernel_major_version = 11;
+  string kernel_release = 12;
+  string kernel_version = 13;
+  string mac_address = 14;
+  int64 memory_free = 15;
+  int64 memory_size = 16;
+  int64 memory_total = 17;
+  repeated DiskInfo mounts = 18;
+  string netmask = 19;
+  string operating_system = 20;
+  string operating_system_release = 21;
+  string os_family = 22;
+  int32 physical_processor_count = 23;
+  int32 processor_count = 24;
+  bool selinux = 25;
+  string swap_free = 26;
+  string swap_size = 27;
+  string timezone = 28;
+  string uptime = 29;
+  int64 uptime_days = 30;
+  int64 uptime_hours = 31;
+}
+
+message DiskInfo {
+  string available = 1;
+  string mount_point = 2;
+  string device = 3;
+  string used = 4;
+  string percent = 5;
+  string size = 6;
+  string type = 7;
+}
+
+message RegisterAgentResponse {
+  bool ok = 1;
+}
+
+message Heartbeat {
+  google.protobuf.Timestamp timestamp = 1;
+  string host_name = 2;
+  HostStatus node_status = 3;
+  repeated ComponentStatus component_status = 4;
+  repeated Alert alerts = 5;
+  AgentEnv agent_env = 6;
+}
+
+message HostStatus {
+  enum Status {
+    Status_HEALTHY = 0;
+    Status_UNHEALTHY = 1;
+  }
+  Status status = 1;
+  string cause = 2;
+}
+
+message ComponentStatus {
+  string component_name = 1;
+  string msg = 2;
+  string status = 3;
+  string send_exec_cmd_det = 4;
+  string service_name = 5;
+  int64 cluster_id = 6;
+  string stack_version = 7;
+  map<string, SubData> configuration_tags = 8;
+  map<string, bytes> extra = 9; // Todo : Java Object Type to pb bytes?
+
+  message SubData {
+    map<string, string> inner_map = 1;
+  }
+
+}
+
+message Alert{
+  // https://github.com/apache/ambari/blob/6c0aa136db32695583ce4df0ebd6f83539b7fa1b/ambari-server/src/main/java/org/apache/ambari/server/state/Alert.java
+  string name = 1;
+  string instance = 2;
+  string service = 3;
+  string component = 4;
+  string hostname = 5; // not duplicated?
+  AlertState state = 6;
+  string label = 7;
+  string text = 8;
+  google.protobuf.Timestamp timestamp = 9;
+  int64 cluster_id = 10;
+  string uuid = 11;
+}
+
+enum AlertState {
+  // https://github.com/apache/ambari/blob/6c0aa136db32695583ce4df0ebd6f83539b7fa1b/ambari-server/src/main/java/org/apache/ambari/server/state/AlertState.java
+  // UNKNOWN is a default value.
+  AlertState_UNKNOWN = 0;
+  AlertState_OK = 1;
+  AlertState_WARNING = 2;
+  AlertState_CRITICAL = 3;
+  AlertState_SKIPPED = 4;
+}
+
+message AgentEnv {
+  // https://github.com/apache/ambari/blob/6c0aa136db32695583ce4df0ebd6f83539b7fa1b/ambari-server/src/main/java/org/apache/ambari/server/agent/AgentEnv.java
+}
+
+message HeartbeatResponse {
+  int64 response_id = 1;
+  repeated ExecutionCommand execution_commands = 2;
+  repeated StatusCommand status_commands = 3;
+  repeated CancelCommand cancel_commands = 4;
+  repeated AlertDefinitionCommand alert_definition_commands = 5;
+  RegistrationCommand registration_command = 6;
+  bool restart_agent = 7;
+  bool has_mapped_components = 8;
+  bool has_pending_tasks = 9;
+  RecoveryConfig recovery_config = 10;
+  int32 cluster_size = 11;
+}
+
+message AgentCommand {
+  AgentCommandType command_type = 1;
+
+  enum AgentCommandType {
+    EXECUTION_COMMAND = 0;
+    BACKGROUND_EXECUTION_COMMAND = 1;
+    STATUS_COMMAND = 2;
+    CANCEL_COMMAND = 3;
+    REGISTRATION_COMMAND = 4;
+    ALERT_DEFINITION_COMMAND = 5;
+    ALERT_EXECUTION_COMMAND = 6;
+  }
+}
+
+message ExecutionCommand {
+  // Logger
+  AgentCommand.AgentCommandType command_type = 1;
+  string cluster_id = 2;
+  string cluster_name = 3;
+  int64 request_id = 4;
+  int64 stage_id = 5;
+  int64 task_id = 6;
+  string command_id = 7;
+  string hostname = 8;
+  string role = 9;
+  map<string, string> host_level_params = 10;
+  map<string, string> cluster_level_params = 11;
+  RoleCommand role_command = 12;
+  map<string, SSet> cluster_host_info = 13;
+  map<string, SSMap> configurations = 14;
+  map<string, string> command_params = 15;
+  string service_name = 16;
+  string service_type = 17;
+  string component_name = 18;
+  repeated SSMap kerberos_command_params = 19;
+  SSet local_components = 20;
+  SSMap availale_services = 21;
+  string credential_store_enabled = 22;
+  map<string, SSMap> configuration_credentials = 23;
+  CommandRepository command_repository = 24;
+  map<string, SSMap> component_version_map = 25;
+  UpgradeSummary upgrade_summary = 26;
+  map<string, bytes> role_parameters = 27;
+  bool use_latest_configs = 28;
+}
+
+enum RoleCommand {
+  INSTALL = 0;
+  UNINSTALL = 1;
+  START = 2;
+  RESTART = 3;
+  STOP = 4;
+  EXECUTE = 5;
+  ABORT = 6;
+  UPGRADE = 7;
+  SERVICE_CHECK = 8;
+  CUSTOM_COMMAND = 9;
+  ACTIONEXECUTE = 10;
+}
+
+message CommandRepository {
+  // m_repositories
+  repeated Repository repositories = 1;
+  // m_repoVersion
+  string repo_version = 2;
+  // m_repoVersionId
+  int64 repo_version_id = 3;
+  // m_stackName
+  string stack_name = 4;
+  // m_repoFileName
+  string repo_file_name = 5;
+  // feature
+  CommandRepositoryFeature feature = 6;
+
+  message Repository {
+    // m_baseUrl
+    string base_url = 1;
+    // m_repoId
+    string repo_id = 2;
+    // ambariManaged
+    // m_ambariManaged
+    bool howdah_managed = 3;
+    // m_repoName
+    string repo_name = 4;
+    // m_distribution
+    string distribution = 5;
+    // m_components
+    string components = 6;
+    // m_mirrorsList
+    string mirrors_list = 7;
+  }
+
+  message CommandRepositoryFeature {
+    // m_isPreInstalled
+    bool pre_installed = 1;
+    // m_isScoped
+    bool scoped = 2;
+  }
+}
+
+message UpgradeSummary {
+  // https://github.com/apache/ambari/blob/trunk/ambari-server/src/main/java/org/apache/ambari/server/stack/upgrade/orchestrate/UpgradeSummary.java
+}
+
+message StatusCommand {
+  AgentCommand.AgentCommandType command_type = 1;
+  string cluster_name = 2;
+  string service_name = 3;
+  string role = 4;
+  string component_name = 5;
+  map<string, SSMap> configurations = 6;
+  map<string, SSSMap> configuration_attributes = 7;
+  map<string, string> command_params = 8;
+  map<string, string> host_level_params = 9;
+  string hostname = 10;
+  StatusCommandPayload payload_level = 11;
+  State desired_state = 12;
+  bool has_stale_configs = 13;
+  ExecutionCommand execution_command = 14;
+
+  enum StatusCommandPayload {
+    DEFAULT = 0;
+    MINIMAL = 1;
+    EXECUTION_COMMAND = 2;
+  }
+}
+
+enum State {
+  // https://github.com/apache/ambari/blob/trunk/ambari-server/src/main/java/org/apache/ambari/server/state/State.java
+
+  // Initial/Clean State.
+  INIT = 0;
+  // In the process of installing.
+  INSTALLING = 1;
+  // Install faield.
+  INSTALL_FAIELD = 2;
+  // State when install completed successfully.
+  INSTALLED = 3;
+  // In the process of starting.
+  STARTING = 4;
+  // State when start completed successfully.
+  STARTED = 5;
+  // In the process of stopping.
+  STOPPING = 6;
+  // In the process of uninstalling.
+  UNINSTALLING = 7;
+  // State when uninstall completed successfully.
+  UNINSTALLED = 8;
+  // In the process of wiping out the install.
+  WIPING_OUT = 9;
+  // In the process of upgrading the host component deployed bits.
+  // Valid only for host component state.
+  UPGRADING = 10;
+  // Disabled master`s backup state.
+  DISABLED = 11;
+  // State could not be determined.
+  UNKNOWN = 12;
+}
+
+message CancelCommand {
+  AgentCommand.AgentCommandType command_type = 1;
+  int64 target_task_id = 2;
+  string reason = 3;
+}
+
+message AlertDefinitionCommand {
+  AgentCommand.AgentCommandType command_type = 1;
+  // m_clusterName
+  string cluster_name = 2;
+  // m_hostName
+  string hostname = 3;
+  // m_publicHostName
+  string pubic_hostname = 4;
+  // m_hash
+  string hash = 5;
+  // alertDefinitions
+  // m_definitions
+  repeated AlertDefinition definitions = 6;
+  // m_configurations
+  map<string, SSSMap> configurations = 7;
+}
+
+message AlertDefinition {
+  int64 cluster_id = 1;
+  int64 definition_id = 2;
+  string service_name = 3;
+  string component_name = 4;
+  string name = 5;
+  Scope scope = 6;
+  int32 interval = 7;
+  bool enabled = 8;
+  Source source = 9;
+  string label = 10;
+  string description = 11;
+  string uuid = 12;
+
+  bool ignore_host = 13;
+  string help_url = 14;
+  int32 repeat_tolerance = 15;
+  bool repeat_tolerance_enabled = 16;
+}
+
+enum Scope {
+  ANY = 0;
+  HOST = 1;
+  SERVICE = 2;
+}
+
+message Source {
+  SourceType type = 1;
+  Reporting Reporting = 2;
+}
+
+enum SourceType {
+  // AMS : Ambari Metric System
+  // HMS : Howdah Metric System
+  // Source is from hms(ams) metric data.
+  AMS = 0;
+  // Source is from metric data.
+  METRIC = 1;
+  // Source is generated using of a script.
+  SCRIPT = 2;
+  // Source is a simple port check.
+  PORT = 3;
+  // Source is an aggregate of a collection of other alert states.
+  AGGREGATE = 4;
+  // Source is a ratio of two METRIC values.
+  PERCENT = 5;
+  // Source is an http(s)-style request.
+  WEB = 6;
+  // Source is a component state recovery results.
+  RECOVERY = 7;
+  // A server-side alert.
+  SERVER = 8;
+}
+
+message Reporting {
+  // m_ok
+  ReportTemplate ok = 1;
+  // m_warning
+  ReportTemplate warning = 2;
+  // m_critical
+  ReportTemplate critical = 3;
+  // m_units
+  string units = 4;
+  // m_type
+  ReportingType type = 5;
+
+  message ReportTemplate {
+    // m_text
+    string text = 1;
+    // m_value
+    double value = 2;
+  }
+
+  enum ReportingType {
+    NUMERIC = 0;
+    PERCENT = 1;
+  }
+}
+
+message RegistrationCommand {
+  AgentCommand.AgentCommandType command_type = 1;
+}
+
+message RecoveryConfig {
+  // enabledComponents
+  repeated RecoveryConfigComponent components = 1;
+}
+
+message RecoveryConfigComponent {
+  string component_name = 1;
+  string service_name = 2;
+  string desired_state = 3;
+}
+
+message SSet {
+  map<string, bool> s = 1;
+}
+
+message SSMap {
+  map<string, string> m = 1;
+}
+
+message SSSMap {
+  map<string, SSMap> m = 1;
 }
