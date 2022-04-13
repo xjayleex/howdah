@@ -5,7 +5,7 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "pb";
 
-service AuthService {
+service Authentication {
   rpc SignIn(SignInRequest) returns (SignInResponse){
     option (google.api.http) = {
       get: "/api/v1/authentication"
@@ -13,13 +13,32 @@ service AuthService {
   };
 }
 
-service Registration {
+service HeartbeatReception {
   // rpc Auth() returns ()
   rpc RegisterAgent(RegisterAgentRequest) returns (RegisterAgentResponse);
-  rpc AgentHeartbeat(stream Heartbeat) returns (stream HeartbeatResponse);
+  rpc AgentHeartbeat(Heartbeat) returns (HeartbeatResponse);
 }
 
+service HowdahEvent {
+  rpc Watch(Verification) returns (stream Event);
+}
 
+message Event {
+  oneof EventType {
+    AgentActionEvent agentAction = 1;
+    CommandsEvent commandsEvent = 2;
+  }
+  message AgentActionEvent {
+    string type = 1;
+  }
+  message CommandsEvent {
+    string type = 1;
+  }
+}
+
+message Verification {
+  bool ok = 1;
+}
 
 message SignInRequest {}
 
@@ -150,6 +169,78 @@ enum AlertState {
 
 message AgentEnv {
   // https://github.com/apache/ambari/blob/6c0aa136db32695583ce4df0ebd6f83539b7fa1b/ambari-server/src/main/java/org/apache/ambari/server/agent/AgentEnv.java
+
+  // Various directories, configurable in <code>ambari-agent.ini</code>
+  repeated Directory stack_folders_and_files = 1;
+  // Directories that match name <code>/etc/alternatives/*conf</code>
+  repeated Alternative alternatives = 2;
+  // List of existing users
+  repeated ExistingUser existing_users = 3;
+  // List of repos
+  repeated string existing_repos = 4;
+  // List of packges
+  repeated PackageDetail installed_packages = 5;
+  // The host health report
+  HostHealth host_health = 6;
+  int32 umask = 7;
+  string transparent_huge_page = 8;
+  bool firewall_running = 9;
+  string firewall_name = 10;
+  bool has_unlimited_jce_policy = 11;
+  bool reverse_lookup = 12;
+
+  message Directory {
+    // dirName
+    string name = 1;
+    // dirType
+    string type = 2;
+  }
+
+  message JavaProc {
+    string user = 1;
+    int32 pid = 2;
+    // is_hadoop
+    bool hadoop = 3;
+    string command = 4;
+  }
+
+  message Alternative {
+    // altName
+    string name = 1;
+    // altTarget
+    string target = 2;
+  }
+
+  message LiveService {
+    // svcName
+    string name = 1;
+    // svcStatus
+    string status = 2;
+    // svcDesc
+    string svcDesc = 3;
+  }
+
+  message ExistingUser {
+    string name = 1;
+    string home_dir = 2;
+    string status = 3;
+  }
+
+  message PackageDetail {
+    // pkgName
+    string name = 1;
+    // pkgVersion
+    string version = 2;
+    // pkgRepoName
+    string repo_name = 3;
+  }
+
+  message HostHealth {
+    repeated JavaProc acive_java_procs = 1;
+    int64 agent_time_stamp_at_reporting = 2;
+    int64 server_time_stamp_at_reporting = 3;
+    repeated LiveService live_services = 4;
+  }
 }
 
 message HeartbeatResponse {

@@ -3,12 +3,10 @@ package howdah_server
 import (
 	"context"
 	"encoding/base64"
-	"github.com/pkg/errors"
-	"howdah/pb"
-	// pb "github.com/xjayleex/howdah/pb"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
+	"howdah/pb"
 	"strings"
 )
 
@@ -80,27 +78,6 @@ type admin struct {
 
 type AdminStore interface {
 	find(id string) (admin, error)
-}
-
-type mockAdminStore map[string]admin
-
-func NewMockAdminStore () mockAdminStore {
-	admin := admin{
-		id:       "admin",
-		password: "admin",
-	}
-
-	store := make(mockAdminStore)
-	store[admin.id] = admin
-	return store
-}
-
-func (store mockAdminStore) find(id string) (admin, error) {
-	if admin, exists := store[id]; !exists {
-		return admin, errors.New("Given ID does not exist.")
-	} else {
-		return admin, nil
-	}
 }
 
 

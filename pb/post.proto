@@ -1,0 +1,92 @@
+syntax = "proto3";
+package pb;
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+message AgentCommand {
+  oneof Command {
+    ExecutionCommand executionCommand = 1;
+    RegistrationCommand registrationCommand = 2;
+    PackageCommand packageCommand = 3;
+  }
+}
+
+message ExecutionCommand {}
+
+message BackgroundExecutionCommand {}
+
+// Command to report the status of a list of services in roles.
+message StatusCommmand {
+}
+
+message RegistrationCommand {}
+
+message PackageCommand {
+  enum Type {
+    Type_INSTALL = 0;
+    Type_UNINSTALL = 1;
+  }
+
+  Type type = 1;
+  Package package = 2;
+}
+
+
+message Package {
+  string name = 1;
+  string version = 2;
+  string repo = 3;
+}
+
+/*
+message AgentCommand {
+  enum AgentCommandType {
+    Execution_Command = 0;
+    Registration_Command = 1;
+    Package_Command = 2;
+  }
+
+  AgentCommandType agentCommandType = 1;
+  Command command = 2;
+}
+message Command {
+  oneof command_oneof {
+    ExecutionCommand executionCommand = 1;
+    RegistrationCommand registrationCommand = 2;
+    PackageCommand packageCommand = 3;
+  }
+}
+message ExecutionCommand {}
+message RegistrationCommand {}
+message PackageCommand {}
+*/
+
+service Authentication {
+  rpc SignIn(SignInRequest) returns (SignInResponse){
+    option (google.api.http) = {
+      get: "/api/v1/authentication"
+    };
+  };
+}
+
+service HeartbeatReception {
+  // rpc Auth() returns ()
+  rpc RegisterAgent(RegisterAgentRequest) returns (RegisterAgentResponse);
+  rpc AgentHeartbeat(Heartbeat) returns (HeartbeatResponse);
+}
+
+service HowdahEvent {
+  rpc Watch() returns (stream Event);
+}
+
+message Event {
+  oneof X {
+    AgentCommand agentCommand = 1;
+  }
+}
+
+message EventResult {
+  oneof X {
+
+  }
+}
